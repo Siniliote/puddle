@@ -2,34 +2,57 @@
 
 {% block title %}Quiz index{% endblock %}
 
-{% block body %}
-    <h1>Quiz index</h1>
+{% block header %}
+<header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Quiz index</h1>
+    </div>
+</header>
+{% endblock %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quiz in quizzes %}
-            <tr>
-                <td>{{ quiz.id }}</td>
-                <td>{{ quiz.title }}</td>
-                <td>
-                    <a href="{{ path('app_quiz_show', {'id': quiz.id}) }}">show</a>
-                    <a href="{{ path('app_quiz_edit', {'id': quiz.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+{% block body %}
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Title
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for quiz in quizzes %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        A{{ quiz.id }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ quiz.title }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="{{ path('app_quiz_show', {'id': quiz.id}) }}">show</a>
+                        <a href="{{ path('app_quiz_edit', {'id': quiz.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" colspan="3">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <a href="{{ path('app_quiz_new') }}">Create new</a>
 {% endblock %}
+
+
+
+

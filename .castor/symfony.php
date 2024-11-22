@@ -62,6 +62,26 @@ function log(): void
     run('symfony server:log', context: $c);
 }
 
+#[AsTask(namespace: 'symfony', description: 'Reload all assets', aliases: ['assets'])]
+function assets(bool $watch = false): void
+{
+    title('symfony:assets');
+
+    $command = [
+        'bin/console',
+        'tailwind:build',
+    ];
+
+    if ($watch) {
+        $command[] = '--watch';
+    }
+
+    docker_compose_run($command);
+
+    success(0);
+    return;
+}
+
 
 #[AsTask(namespace: 'symfony', description: 'Connect to the FrankenPHP container', aliases: ['bash'])]
 function bash(): void
@@ -115,6 +135,37 @@ function lint_yaml(): int
     title('lint:yaml');
 
     return docker_exit_code('bin/console lint:yaml --parse-tags config/');
+}
+
+#[AsTask(namespace: 'symfony', description: 'Switch to the production environment', aliases: ['prod'])]
+function prod(): void
+{
+    title('symfony:prod');
+    if (io()->confirm('Are you sure you want to switch to the production environment? This will overwrite your .env.local file.', false)) {
+        fs()->copy('.env.local.dist', '.env.local');
+        docker_compose_run('bin/console tailwind:build --minify');
+        docker_compose_run('bin/console asset-map:compile');
+        success(0);
+
+        return;
+    }
+
+    aborted();
+}
+
+#[AsTask(namespace: 'symfony', description: 'Switch to the development environment', aliases: ['dev'])]
+function dev(): void
+{
+    title('symfony:dev');
+    if (io()->confirm('Are you sure you want to switch to the development environment? This will delete your .env.local file.', false)) {
+        fs()->remove('.env.local');
+        fs()->remove('./public/assets/');
+        success(0);
+
+        return;
+    }
+
+    aborted();
 }
 
 #[AsTask(namespace: 'symfony', description: 'Run all PHPUnit tests', aliases: ['test'])]

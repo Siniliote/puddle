@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -11,7 +11,15 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="h-full">
+        <div class="min-h-full">
+            {{ include('default/_navigation.html.twig') }}
+            {% block header %}{% endblock %}
+            <main>
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    {% block body %}{% endblock %}
+                </div>
+            </main>
+        </div>
     </body>
 </html>
