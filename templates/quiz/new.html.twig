@@ -11,7 +11,19 @@
 {% endblock %}
 
 {% block body %}
-    {{ include('quiz/_form.html.twig') }}
+<div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg mb-5">
+    <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+        <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
+            <a href="{{ path('app_quiz_index') }}" class="flex border border-gray-200 items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-2" viewBox="0 0 24 24"><path fill="currentColor" d="M20 11v2H8l5.5 5.5l-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5L8 11z"/></svg>
+            Back to list
+            </a>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('app_quiz_index') }}">back to list</a>
+<div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new quiz</h2>
+    {{ include('quiz/_form.html.twig') }}
+</div>
 {% endblock %}

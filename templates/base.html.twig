@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-100">
+<html class="h-full bg-gray-100 text-white" >
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -16,10 +16,13 @@
             {{ include('default/_navigation.html.twig') }}
             {% block header %}{% endblock %}
             <main>
-                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    {% block body %}{% endblock %}
-                </div>
+                <section class="flex h-screen bg-gray-50 dark:bg-gray-900 mx-auto px-4 py-6 sm:px-6 lg:px-8">
+                    <div class="w-full max-w-screen-xl px-4 mx-auto lg:px-12">
+                        {% block body %}{% endblock %}
+                    </div>
+                </section>
             </main>
         </div>
+         {{ include('default/_footer.html.twig') }}
     </body>
 </html>
