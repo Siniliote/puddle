@@ -23,3 +23,8 @@
 .castor.stub.php
 .castor/vendor
 ###< joliecode/castor ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
