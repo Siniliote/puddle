@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/** @extends AbstractType<Quiz> */
 class QuizFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

@@ -10,6 +10,7 @@ use function Castor\io;
 use function docker\docker_exit_code;
 
 import(__DIR__.'/../tools/php-cs-fixer/castor.php');
+import(__DIR__.'/../tools/phpstan/castor.php');
 
 #[AsTask(description: 'Install all tools')]
 function install(): void
