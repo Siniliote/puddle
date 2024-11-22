@@ -1,3 +1,7 @@
+.draft
+
+### PhpStorm ###
+.idea
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -12,4 +16,10 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
+/build
 ###< phpunit/phpunit ###
+
+###> joliecode/castor ###
+.castor.stub.php
+.castor/vendor
+###< joliecode/castor ###
