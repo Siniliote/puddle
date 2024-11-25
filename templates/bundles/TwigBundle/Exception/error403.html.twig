@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accès refusé.</h1>
+
+    <p>
+        403 : Vous n'avez pas les super-pouvoirs nécessaires pour voir cette page.
+        <a href="{{ path('app_homepage_index') }}">Retour à la case départ</a>.
+    </p>
+{% endblock %}

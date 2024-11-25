@@ -168,39 +168,3 @@ function dev(): void
     aborted();
 }
 
-#[AsTask(namespace: 'symfony', description: 'Run all PHPUnit tests', aliases: ['test'])]
-function test(
-    #[AsOption(name: 'cover', description: 'With Coverage')]
-    bool $cover = false,
-    #[AsOption(name: 'unit', description: 'Only UnitTest')]
-    bool $unit = false
-): void
-{
-    title('symfony:test');
-
-    $c = context()
-        ->withEnvironment([
-            'APP_ENV' => 'test'
-        ]);
-
-    $command = [
-        'vendor/bin/phpunit',
-        '--testdox',
-    ];
-
-    if($cover) {
-        $command[] = '--coverage-text';
-        $command[] = '--testdox-html=build/testdox.html';
-        $command[] = '--coverage-html=build/phpunit';
-    }
-
-    if($unit) {
-        $command[] = '--testsuite=Unit';
-    }
-
-    try {
-        docker_compose_run($command, $c);
-    } catch (\Throwable $th) {
-        exit;
-    }
-}

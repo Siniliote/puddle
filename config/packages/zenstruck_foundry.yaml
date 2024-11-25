@@ -6,6 +6,7 @@ when@test:
     zenstruck_foundry:
         global_state:
             - Tests\Story\QuizStory
+            - Tests\Story\UserStory
         orm:
             reset:
                 mode: schema

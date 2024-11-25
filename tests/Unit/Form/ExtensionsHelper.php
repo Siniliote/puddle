@@ -11,7 +11,7 @@ use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Validation;
 
-trait Extensions
+trait ExtensionsHelper
 {
     /**
      * @return list<AbstractExtension>

@@ -10,13 +10,13 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Form\Test\TypeTestCase;
-use Tests\Unit\Form\Extensions;
+use Tests\Unit\Form\ExtensionsHelper;
 
 #[CoversClass(QuizFormType::class)]
 #[UsesClass(Quiz::class)]
 class QuizFormTypeTest extends TypeTestCase
 {
-    use Extensions;
+    use ExtensionsHelper;
 
     #[Test]
     public function testSubmitValidData(): void

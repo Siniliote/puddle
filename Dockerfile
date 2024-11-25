@@ -39,22 +39,11 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PHP_INI_SCAN_DIR=":$PHP_INI_DIR/app.conf.d"
 
 ###> recipes ###
-###> symfony/panther ###
-# Chromium and ChromeDriver
-ENV PANTHER_NO_SANDBOX 1
-# Not mandatory, but recommended
-ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
-RUN apt-get update && apt-get install -y --no-install-recommends chromium chromium-driver && rm -rf /var/lib/apt/lists/*
-
-# Firefox and geckodriver
-#ARG GECKODRIVER_VERSION=0.34.0
-#RUN apt-get update && apt-get install -y --no-install-recommends firefox && rm -rf /var/lib/apt/lists/*
-#RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER_VERSION/geckodriver-v$GECKODRIVER_VERSION-aarch64.tar.gz; \
-#	tar -zxf geckodriver-v$GECKODRIVER_VERSION-aarch64.tar.gz -C /usr/bin; \
-#	rm geckodriver-v$GECKODRIVER_VERSION-aarch64.tar.gz
-###< symfony/panther ###
 ###> doctrine/doctrine-bundle ###
-RUN install-php-extensions pdo_pgsql
+RUN set -eux; \
+    install-php-extensions \
+        pdo_pgsql \
+    ;
 ###< doctrine/doctrine-bundle ###
 ###< recipes ###
 
@@ -74,9 +63,29 @@ ENV APP_ENV=dev XDEBUG_MODE=off
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
+###> symfony/panther ###
+# Chromium and ChromeDriver
+ENV PANTHER_NO_SANDBOX 1
+# Not mandatory, but recommended
+ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    chromium \
+    chromium-driver \
+    && rm -rf /var/lib/apt/lists/*
+
+# Firefox and geckodriver
+#ARG GECKODRIVER_VERSION=0.34.0
+#RUN apt-get update && apt-get install -y --no-install-recommends firefox && rm -rf /var/lib/apt/lists/*
+#RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER_VERSION/geckodriver-v$GECKODRIVER_VERSION-aarch64.tar.gz; \
+#	tar -zxf geckodriver-v$GECKODRIVER_VERSION-aarch64.tar.gz -C /usr/bin; \
+#	rm geckodriver-v$GECKODRIVER_VERSION-aarch64.tar.gz
+###< symfony/panther ###
+
 RUN set -eux; \
 	install-php-extensions \
 		xdebug \
+        pcov \
 	;
 
 COPY --link frankenphp/conf.d/20-app.dev.ini $PHP_INI_DIR/app.conf.d/

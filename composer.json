@@ -22,9 +22,11 @@
         "symfony/flex": "^2",
         "symfony/form": "7.1.*",
         "symfony/framework-bundle": "7.1.*",
+        "symfony/mailer": "7.1.*",
         "symfony/mercure-bundle": "^0.3.9",
         "symfony/messenger": "7.1.*",
         "symfony/runtime": "7.1.*",
+        "symfony/security-bundle": "7.1.*",
         "symfony/security-csrf": "7.1.*",
         "symfony/stimulus-bundle": "^2.21",
         "symfony/twig-bundle": "7.1.*",
@@ -32,7 +34,9 @@
         "symfony/ux-turbo": "^2.21",
         "symfony/validator": "7.1.*",
         "symfony/yaml": "7.1.*",
+        "symfonycasts/reset-password-bundle": "^1.23",
         "symfonycasts/tailwind-bundle": "^0.6.1",
+        "symfonycasts/verify-email-bundle": "^1.17",
         "tales-from-a-dev/flowbite-bundle": "^0.7.0",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
@@ -89,6 +93,7 @@
         }
     },
     "require-dev": {
+        "brianium/paratest": "^7.6",
         "dama/doctrine-test-bundle": "^8.2",
         "doctrine/doctrine-fixtures-bundle": "^3.6",
         "phpunit/phpunit": "^11",
