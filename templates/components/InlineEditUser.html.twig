@@ -1,0 +1,60 @@
+<tr {{ attributes }}  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 {% if isEditing %}bg-amber-50 dark:bg-amber-400/10{% endif %}">
+    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        {{ user.id }}
+    </th>
+    {% if isEditing %}
+        <td class="px-6 py-4" colspan="3">
+            {% set error = this.getError('user.email') %}
+            <form class="space-y-4 md:space-y-6">
+                {% set error = this.getError('user.email') %}
+                <div class="relative">
+                    <input type="text" value="{{ user.email }}" data-model="user.email" name="_username" id="user_email"  class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {{ error ? ' border-rose-300' }}" autocomplete="email" required autofocus>
+                    <button type="submit"
+                        data-action="live#action:prevent"
+                        data-live-action-param="save"
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change</button>
+                    {% if error %}
+                        <div class="text-xs mt-1 text-rose-500">{{ error.message }}</div>
+                    {% endif %}
+                </div>
+            </form>
+        </td>
+    {% else %}
+        <td class="px-6 py-4">
+            <div class="flex items-center">
+                {{ user.email }}
+            </div>
+        </td>
+    {% endif %}
+    {% if not isEditing %}
+        <td class="px-6 py-4">
+            {% if user.isVerified %}
+                <span class="px-2 py-3 text-green-500 text-lg inline-flex items-baseline"> {{ ux_icon('material-symbols:check-circle') }} </span>
+            {% else %}
+                <span class="px-2 py-3 text-rose-500 text-lg inline-flex items-baseline"> {{ ux_icon('material-symbols:cancel') }} </span>
+            {% endif %}
+        </td>
+        <td class="px-6 py-4">
+            {% for role in user.getEnumRoles() %}
+                <twig:Role type="{{ role | trans }}" color="{{ role.getColors }}" />
+            {% endfor %}
+        </td>
+    {% endif %}
+    <td class="px-6 py-4">
+        <div class="flex items-center">
+            <button
+                data-action="live#action"
+                data-live-action-param="activateEditing"
+                class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
+                title="Click to edit!"
+            >
+                <span class="sr-only">Edit</span>
+                <span class="px-2 py-3 text-lg inline-flex items-baseline">{{ ux_icon('material-symbols:edit', { class:"w-6 h-6 fill-current" }) }}</span>
+            </button>
+            {% if not user.isVerified %}
+                {{ include('user/_confirmation_email_form.html.twig') }}
+            {% endif %}
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
+    </td>
+</tr>

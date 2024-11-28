@@ -14,3 +14,8 @@ THE ERROR HANDLER HAS CHANGED!
 https://github.com/zenstruck/foundry/issues/711
 
 https://github.com/zenstruck/foundry/issues/667
+
+
+## Fix 
+
+Résoudre le problème de ux-toggle-password 

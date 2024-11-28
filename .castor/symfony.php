@@ -117,6 +117,9 @@ function reload(): void
     docker_compose_run('bin/console doctrine:database:create --if-not-exists');
     docker_compose_run('bin/console doctrine:migrations:migrate --no-interaction');
 
+    io()->info("Load fixtures");
+    docker_compose_run('bin/console doctrine:fixtures:load --no-interaction');
+
     success(0);
     return;
 }

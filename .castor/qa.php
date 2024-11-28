@@ -66,7 +66,6 @@ function phpunit(
 
     $command = [
         'vendor/bin/phpunit',
-        '--testdox',
     ];
 
     if($cover) {

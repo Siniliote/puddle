@@ -1,0 +1,8 @@
+/* symfony/ux-toggle-password */
+.toggle-password-button {
+    @apply absolute items-center cursor-pointer;
+}
+
+.toggle-password-icon {
+    @apply text-sm text-slate-400 dark:text-slate-500 font-medium w-4 h-4;
+}
