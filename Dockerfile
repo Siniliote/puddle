@@ -45,6 +45,13 @@ RUN set -eux; \
         pdo_pgsql \
     ;
 ###< doctrine/doctrine-bundle ###
+
+###> symfony/amqp ###
+RUN set -eux; \
+    install-php-extensions \
+        amqp \
+    ;
+###< symfony/amqp ###
 ###< recipes ###
 
 COPY --link frankenphp/conf.d/10-app.ini $PHP_INI_DIR/app.conf.d/

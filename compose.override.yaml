@@ -30,6 +30,13 @@ services:
       - "5432"
 ###< doctrine/doctrine-bundle ###
 
+###> symfony/amqp ###
+  rabbitmq:
+    ports:
+      - "5672"
+      - "15672"
+###> symfony/amqp ###
+
 ###> symfony/mailer ###
   mailer:
     image: axllent/mailpit

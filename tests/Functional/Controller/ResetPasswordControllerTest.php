@@ -10,7 +10,6 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\Factory\UserFactory;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 #[CoversClass(ResetPasswordController::class)]

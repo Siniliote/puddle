@@ -46,11 +46,11 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'first_options' => [
                     'label' => 'Password',
-                    ...$passwordOption
+                    ...$passwordOption,
                 ],
                 'second_options' => [
                     'label' => 'Confirm Password',
-                    ...$passwordOption
+                    ...$passwordOption,
                 ],
                 'constraints' => [
                     new NotBlank(message: 'Please enter a password!'),

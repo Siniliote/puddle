@@ -12,7 +12,6 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -63,7 +62,7 @@ final class HomepageControllerTest extends WebTestCase
 
     public static function getUrlsForRegularUsers(): \Generator
     {
-        yield 'Admin index' =>  ['GET', '/admin'];
+        yield 'Admin index' => ['GET', '/admin'];
     }
 
     public function testAdminHomepage(): void
