@@ -1,0 +1,31 @@
+framework:
+    workflows: 
+        quiz_lifecycle:
+            type: 'state_machine'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'method'
+                property: 'currentPlace'
+            supports:
+                - App\Entity\Quiz
+            initial_marking: draft
+            places:
+                - draft
+                - completed
+                - reviewed
+                - finished
+                - frozen
+            transitions:
+                to_complete:
+                    from: draft
+                    to:   completed
+                fto_review:
+                    from: completed
+                    to:   reviewed
+                finish:
+                    from: reviewed
+                    to:   finished
+                frozen:
+                    from: finished
+                    to:   frozen

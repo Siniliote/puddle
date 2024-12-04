@@ -1,0 +1,37 @@
+<div class="space-y-6 sm:space-y-8">
+    {%- set attr_enabled = "text-primary-700 dark:text-primary-500" %}
+    {%- set attr_disabled = "text-gray-500 dark:text-gray-400" %}
+    <ol class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 sm:justify-center md:flex-row md:items-center lg:gap-6">
+        <li class="flex items-center gap-2 md:flex-1 md:flex-col md:gap-1.5 lg:flex-none">
+
+            <svg class="h-5 w-5 {{ attr_enabled }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            <p class="text-sm font-medium leading-tight {{ attr_enabled }}">Quiz</p>
+        </li>
+
+        <div class="hidden h-px w-8 shrink-0 bg-gray-200 dark:bg-gray-700 md:block xl:w-16"></div>
+
+        <li class="flex items-center gap-2 md:flex-1 md:flex-col md:gap-1.5 lg:flex-none">
+            {% if workflow_has_marked_place(quiz, 'completed') %}
+                {%- set attr_class_list_question = attr_enabled -%}
+            {% endif %}
+            <svg class="h-5 w-5 {{ attr_class_list_question|default(attr_disabled) }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            <p class="text-sm font-medium leading-tight {{ attr_class_list_question|default(attr_disabled) }}">Liste des questions</p>
+        </li>
+
+        <div class="hidden h-px w-8 shrink-0 bg-gray-200 dark:bg-gray-700 md:block xl:w-16"></div>
+
+        <li class="flex items-center gap-2 md:flex-1 md:flex-col md:gap-1.5 lg:flex-none">
+            {% if workflow_has_marked_place(quiz, 'reviewed') %}
+                {%- set attr_class_confirm = attr_enabled|default(attr_disabled) -%}
+            {% endif %}
+            <svg class="h-5 w-5 {{ attr_class_confirm|default(attr_disabled) }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            <p class="text-sm font-medium leading-tight {{ attr_class_confirm|default(attr_disabled) }}">Preview & Confirmation</p>
+        </li>
+    </ol>
+</div>

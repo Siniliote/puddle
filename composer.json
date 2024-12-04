@@ -40,6 +40,7 @@
         "symfony/ux-toggle-password": "^2.21",
         "symfony/ux-turbo": "^2.21",
         "symfony/validator": "7.1.*",
+        "symfony/workflow": "7.1.*",
         "symfony/yaml": "7.1.*",
         "symfonycasts/reset-password-bundle": "^1.23",
         "symfonycasts/tailwind-bundle": "^0.6.1",

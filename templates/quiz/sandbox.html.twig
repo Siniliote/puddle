@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block header %}
+<header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Quiz</h1>
+    </div>
+</header>
+{% endblock %}
+
+
+{% block body %}
+
+{{ include('quiz/_stepper.html.twig') }}
+
+<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        <div class="mx-auto max-w-5xl">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Add a new quiz</h2>
+            <twig:QuizForm :form="quizForm" />
+        </div>
+    </div>
+</section>
+{% endblock %}

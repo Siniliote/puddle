@@ -9,9 +9,11 @@ use App\Form\QuizFormType;
 use App\Repository\QuizRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 /**
  * Only Basic Create ; Retreive ; Update ; Delete.
@@ -28,8 +30,12 @@ final class QuizController extends AbstractController
     }
 
     #[Route('/new', name: 'app_quiz_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        #[Target('quiz_lifecycle')]
+        WorkflowInterface $workflow,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
         $quiz = new Quiz();
         $form = $this->createForm(QuizFormType::class, $quiz);
         $form->handleRequest($request);
@@ -41,9 +47,9 @@ final class QuizController extends AbstractController
             return $this->redirectToRoute('app_quiz_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('quiz/new.html.twig', [
+        return $this->render('quiz/sandbox.html.twig', [
             'quiz' => $quiz,
-            'form' => $form,
+            'quizForm' => $form,
         ]);
     }
 
